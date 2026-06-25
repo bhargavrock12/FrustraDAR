@@ -191,8 +191,15 @@ class User(Base):
     # User points to another User.
     children = relationship(
         "User",
-        backref="parent",
-        foreign_keys=[parent_id]
+        foreign_keys=[parent_id],
+        back_populates="parent"
+    )
+
+    parent = relationship(
+        "User",
+        foreign_keys=[parent_id],
+        remote_side=[id],
+        back_populates="children"
     )
 
     # Used only for debugging/logging
