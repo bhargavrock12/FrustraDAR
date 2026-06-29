@@ -1,0 +1,50 @@
+﻿fastapi==0.109.0
+uvicorn[standard]==0.27.0
+sqlalchemy==2.0.25
+psycopg2-binary==2.9.9
+alembic==1.13.1
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+pydantic==2.5.3
+pydantic-settings==2.1.0
+httpx==0.26.0
+firebase-admin==6.3.0
+sendgrid==6.11.0
+python-dotenv==1.0.0
+APScheduler==3.10.4
+pytest==7.4.4
+pytest-asyncio==0.23.3
+
+
+
+# FrustraDAR backend — pinned runtime dependencies.
+# These mirror the exact versions the frozen backend already uses (docs/03_BACKEND_REFERENCE.md).
+# Do NOT upgrade without an explicit decision: the passlib/bcrypt pairing below is version-sensitive
+# and preserves current password-hashing behavior.
+
+# --- Web framework / ASGI ---
+fastapi==0.109.0
+uvicorn==0.27.0
+python-multipart==0.0.6
+
+# --- Database / ORM / migrations ---
+sqlalchemy==2.0.25
+psycopg2-binary==2.9.9
+alembic==1.13.1
+
+# --- Validation / settings ---
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# --- Auth / security ---
+python-jose==3.3.0
+passlib==1.7.4
+bcrypt==4.0.1
+
+# --- External services ---
+sendgrid==6.11.0
+firebase-admin==6.3.0
+
+# --- HTTP client (also used by Starlette/FastAPI TestClient) ---
+httpx==0.26.0

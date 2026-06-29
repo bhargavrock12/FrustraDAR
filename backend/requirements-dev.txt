@@ -1,0 +1,16 @@
+# FrustraDAR backend — test/dev-only dependencies.
+# Installing this file also installs the full runtime set (-r requirements.txt) so a dev/CI
+# environment can both import `app` and run the suite. Keep this set minimal.
+
+-r requirements.txt
+
+# --- Test framework ---
+pytest==7.4.4
+pytest-asyncio==0.23.3
+
+# NOTE (B-D2): the suite runs against a real (ephemeral) PostgreSQL instance because the frozen
+# models use PostgreSQL-specific column types (ARRAY, UUID, native ENUM). SQLite is NOT supported
+# and the models must not be changed to accommodate it. Point the suite at Postgres via the
+# TEST_DATABASE_URL environment variable (see tests/conftest.py). The mechanism for providing that
+# Postgres (local Docker service vs CI service container vs testcontainers) is left to the runner;
+# if you choose testcontainers, add `testcontainers[postgresql]` here.
