@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "facial",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-21)",
+  "input_name": "pixel_values",
+  "shape": [1, 3, 224, 224],
+  "layout": "NCHW",
+  "dtype": "float32",
+  "color_space": "RGB",
+  "resize": [224, 224],
+  "value_scale": {
+    "_decision_required": "ML-D4",
+    "note": "Whether pixels are scaled to [0,1] before normalization is not specified in 06_ML_SYSTEM.md; do not assume.",
+    "scale_to_0_1": null
+  },
+  "normalization": {
+    "_decision_required": "ML-D4",
+    "note": "Facial preprocessing normalization (per-channel mean/std) is NOT specified in 06_ML_SYSTEM.md. Source it from the facial model's preprocessing config (e.g. the HuggingFace image processor for the base model). Do NOT invent values.",
+    "mean": null,
+    "std": null
+  },
+  "face_detection": {
+    "owned_by": "android-app",
+    "note": "Face detection and cropping happen BEFORE this contract. The ONNX expects an already-cropped, resized face crop; the model is not a full pipeline (no detection/softmax/scoring inside it)."
+  }
+}

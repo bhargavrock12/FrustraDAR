@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "facial",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-21, FD-30)",
+  "base_model": "abhilash88/face-emotion-detection",
+  "architecture": "ViT (Vision Transformer)",
+  "task": "7-class facial emotion classification adapted to a continuous frustration score",
+  "quantization": "INT8",
+  "sizes": {
+    "int8_mb_approx": 83,
+    "fp32_mb_approx": 328
+  },
+  "evaluation": {
+    "dataset_metric": true,
+    "not_gamer_validated": true,
+    "_claims_policy": "FD-30: FER2013 is NOT a gamer-frustration dataset. These are dataset metrics only and must never be presented as validated real-world gamer-frustration accuracy.",
+    "datasets": ["FER2013"],
+    "metrics": {
+      "fer2013_7class_accuracy_pct": 71.25,
+      "binary_frustradar_int8": {
+        "accuracy_pct": 83.32,
+        "precision_pct": 68.97,
+        "recall_pct": 77.83,
+        "f1_pct": 73.13,
+        "roc_auc": 0.9083
+      }
+    }
+  }
+}

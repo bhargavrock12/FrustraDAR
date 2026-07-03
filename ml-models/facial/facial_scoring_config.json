@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "facial",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-21)",
+  "artifact": "frustradar_facial_int8.onnx",
+  "base_model": "abhilash88/face-emotion-detection",
+  "emotion_labels_ordered": ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"],
+  "_emotion_order_note": "Index order is load-bearing and MUST match the ONNX output ordering exactly (0 angry ... 6 neutral). Do not reorder.",
+  "softmax": true,
+  "frustration_emotions": ["angry", "disgust", "fear"],
+  "score_formula": {
+    "expression": "facial_score = (P_angry + P_disgust + P_fear) * 100",
+    "inputs": "softmax probabilities over emotion_labels_ordered",
+    "output_range": [0, 100]
+  },
+  "classification": {
+    "threshold": 31.0,
+    "rule": ">= 31.0 -> Frustration; < 31.0 -> Non-Frustration",
+    "note": "The threshold produces a boolean classification. The CONTINUOUS 0-100 facial_score (not the boolean) is what feeds fusion."
+  }
+}
