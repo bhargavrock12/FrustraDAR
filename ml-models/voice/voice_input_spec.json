@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "voice",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-22)",
+  "input_name": "input_values",
+  "sample_rate_hz": 16000,
+  "channels": 1,
+  "channel_layout": "mono",
+  "dtype": "float32",
+  "framing": {
+    "_decision_required": "ML-D6",
+    "note": "Exact analysis window length, hop/stride, and any padding for the Wav2Vec2 input are NOT specified in 06_ML_SYSTEM.md. Source from the shipped voice preprocessing / model config. Do NOT invent.",
+    "window_length_ms": null,
+    "hop_ms": null,
+    "padding": null
+  },
+  "normalization": {
+    "_decision_required": "ML-D6",
+    "note": "Waveform normalization applied before input_values (e.g. zero-mean/unit-variance per Wav2Vec2 feature extractor) is not specified here; source from the shipped config.",
+    "type": null
+  },
+  "acoustic_baseline_window": {
+    "_decision_required": "ML-D6",
+    "note": "The acoustic analysis needs a rolling baseline for baseline-relative energy / dB jump. Baseline window duration and update policy are not specified in 06_ML_SYSTEM.md.",
+    "baseline_window_sec": null,
+    "update_policy": null
+  }
+}

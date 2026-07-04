@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "voice",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-22)",
+  "artifact": "FrustraDAR_Voice_INT8.onnx",
+  "model_family": "Wav2Vec2 (speech emotion recognition)",
+  "_reconcile_note": "ML-D5: a voice_scoring_config.json ships inside the mobile package (Voice_ML/final/FrustraDAR_Voice_Mobile_Final/). When the artifacts are provided, VERIFY this file against the shipped one and reconcile any divergence rather than shipping conflicting values. Values below are transcribed from FD-22.",
+  "_decision_required": {
+    "ML-D5": "Reconcile with the shipped voice_scoring_config.json (not available in this repo)."
+  },
+  "emotion_classes_ordered": ["anger", "disgust", "fear", "happy", "neutral", "sad"],
+  "_emotion_order_note": "Order is load-bearing and MUST match the ONNX 6-logit output ordering exactly.",
+  "softmax": true,
+  "emotion_score": {
+    "weights": {
+      "anger": 0.60,
+      "disgust": 0.15,
+      "fear": 0.15,
+      "sad": 0.10,
+      "happy": 0.0,
+      "neutral": 0.0
+    },
+    "formula": "emotion_score = 100 * (0.60*P_anger + 0.15*P_disgust + 0.15*P_fear + 0.10*P_sad)",
+    "output_range": [0, 100]
+  },
+  "acoustic_score": {
+    "features_used": ["rms_energy", "baseline_relative_energy", "db_jump", "onset_strength"],
+    "spike_threshold_db": 15,
+    "spike_note": "A spike is detected when energy rises above a 15 dB baseline-relative threshold.",
+    "formula": "acoustic_score = clamp((dB_above_baseline / 30) * 100, 0, 100)",
+    "output_range": [0, 100]
+  },
+  "voice_score": {
+    "formula": "voice_score = clip(0.70*emotion_score + 0.30*acoustic_score, 0, 100)",
+    "emotion_weight": 0.70,
+    "acoustic_weight": 0.30,
+    "output_range": [0, 100]
+  },
+  "moderation": {
+    "applied": "after the 0.70/0.30 blend",
+    "rules": [
+      { "condition": "P_happy > 0.60 AND P_anger < 0.25", "multiplier": 0.75 },
+      { "condition": "P_neutral > 0.70 AND P_anger < 0.20", "multiplier": 0.70 }
+    ],
+    "note": "Moderation multipliers are applied to the blended voice_score to suppress false positives during clearly happy/neutral speech."
+  },
+  "backend_mapping": {
+    "note": "This Voice Score is uploaded to the backend as audio_score (audio_score == Voice Score at the contract layer)."
+  }
+}

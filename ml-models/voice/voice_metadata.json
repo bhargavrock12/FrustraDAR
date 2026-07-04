@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "voice",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-22, FD-30)",
+  "model_family": "Wav2Vec2 (speech emotion recognition) + baseline-relative acoustic analysis",
+  "quantization": "INT8",
+  "sizes": {
+    "int8_mb_approx": 116,
+    "fp32_mb_approx": 361,
+    "int4_mb_approx": 78,
+    "int4_status": "rejected"
+  },
+  "latency": {
+    "_important": "These are Colab measurements, NOT Android on-device latency.",
+    "environment": "Colab",
+    "int8_avg_ms": 505,
+    "int8_median_ms": 453,
+    "int8_p95_ms": 1130
+  },
+  "evaluation": {
+    "dataset_metric": true,
+    "not_gamer_validated": true,
+    "_claims_policy": "FD-30: CREMA-D and RAVDESS are NOT gamer-frustration datasets. Training/eval datasets only; never present as validated real-world gamer-frustration accuracy.",
+    "datasets": ["CREMA-D", "RAVDESS"]
+  }
+}

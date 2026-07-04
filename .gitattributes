@@ -1,1 +1,2 @@
 ml-models/facial/frustradar_facial_int8.onnx filter=lfs diff=lfs merge=lfs -text
+ml-models/voice/FrustraDAR_Voice_INT8.onnx filter=lfs diff=lfs merge=lfs -text
