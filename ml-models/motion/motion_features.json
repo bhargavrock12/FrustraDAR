@@ -1,0 +1,16 @@
+[
+    "accel_std_baseline_ratio",
+    "accel_rms_baseline_ratio",
+    "accel_energy_baseline_ratio",
+    "accel_range_baseline_ratio",
+    "gyro_std_baseline_ratio",
+    "gyro_rms_baseline_ratio",
+    "gyro_energy_baseline_ratio",
+    "gyro_range_baseline_ratio",
+    "jerk_abs_mean_baseline_ratio",
+    "jerk_rms_baseline_ratio",
+    "jerk_energy_baseline_ratio",
+    "high_accel_count_baseline_ratio",
+    "high_gyro_count_baseline_ratio",
+    "accel_spike_count_baseline_ratio"
+]

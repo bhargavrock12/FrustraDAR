@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "motion",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-23, FD-30)",
+  "model_type": "XGBoost",
+  "model_selection": "XGBoost chosen over Random Forest",
+  "validation_method": "user-independent (test users absent during training), 5 user-level folds",
+  "features": "14 personalized baseline-ratio features (derived from 26 engineered features)",
+  "sizes": {
+    "artifact_mb_approx": 1.04
+  },
+  "ablation_note": "The 14 personalized features perform almost as well as the full 40-feature combination; personalized features substantially outperform absolute motion features. This motivated the 14-feature deployment candidate.",
+  "evaluation": {
+    "dataset_metric": true,
+    "not_gamer_validated": true,
+    "experimental": true,
+    "_claims_policy": "FD-30: evaluation used SYNTHETIC IMU data and is experimental. Never present as validated real-world gamer-frustration accuracy.",
+    "datasets": ["synthetic IMU"],
+    "metrics": {
+      "mean_accuracy_pct": 86.4667,
+      "mean_f1_pct": 88.7399,
+      "accuracy_std_pct": 1.2660,
+      "f1_std_pct": 0.9614,
+      "folds": 5
+    }
+  }
+}

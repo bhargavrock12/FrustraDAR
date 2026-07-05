@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "motion",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-23)",
+  "purpose": "Per-user normal-motion baseline used to convert the 26 engineered features into 14 baseline-ratio features.",
+  "privacy": {
+    "on_device": true,
+    "per_user": true,
+    "storage": "local device only",
+    "never_uploaded": true,
+    "note": "The baseline is user-specific and stored on-device; it is never uploaded (FD-1, FD-2)."
+  },
+  "calibration": {
+    "windows_required": 20,
+    "sample_count": 20,
+    "note": "The Motion ML training pipeline constructs the per-user normal-motion baseline from 20 normal/frustration-free windows. The notebook does not define a mobile runtime duration, storage format, or recalibration policy.",
+    "duration_sec": null,
+    "storage_format": null,
+    "recalibration_policy": null
+  },
+  "ratio_computation": {
+    "note": "Current-window engineered features are expressed as ratios relative to the corresponding baseline statistics to produce the 14 personalized features. Exact ratio definition per feature depends on ML-D8 (feature list) and the training pipeline."
+  }
+}

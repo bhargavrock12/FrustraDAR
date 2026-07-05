@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "motion",
+  "source_of_truth": "Motion ML training notebook",
+  "artifact": "motion_xgboost.json",
+  "_highest_risk_contract": "Feature ORDER must match the trained XGBoost model exactly. A mismatch silently corrupts predictions with no error.",
+
+  "engineered_features": {
+    "count": 26,
+    "categories": [
+      "acceleration statistics",
+      "rotational statistics",
+      "jerk",
+      "movement-event counts"
+    ],
+    "names_ordered": [
+      "accel_mean",
+      "accel_std",
+      "accel_min",
+      "accel_max",
+      "accel_range",
+      "accel_median",
+      "accel_rms",
+      "accel_energy",
+      "gyro_mean",
+      "gyro_std",
+      "gyro_min",
+      "gyro_max",
+      "gyro_range",
+      "gyro_median",
+      "gyro_rms",
+      "gyro_energy",
+      "jerk_mean",
+      "jerk_abs_mean",
+      "jerk_std",
+      "jerk_max",
+      "jerk_range",
+      "jerk_rms",
+      "jerk_energy",
+      "high_accel_count",
+      "high_gyro_count",
+      "accel_spike_count"
+    ]
+  },
+
+  "personalized_features": {
+    "count": 14,
+    "description": "Baseline-ratio features expressing how much the current window deviates from the user's normal-motion baseline. These 14 features are the actual XGBoost model inputs.",
+    "names_ordered": [
+      "accel_std_baseline_ratio",
+      "accel_rms_baseline_ratio",
+      "accel_energy_baseline_ratio",
+      "accel_range_baseline_ratio",
+      "gyro_std_baseline_ratio",
+      "gyro_rms_baseline_ratio",
+      "gyro_energy_baseline_ratio",
+      "gyro_range_baseline_ratio",
+      "jerk_abs_mean_baseline_ratio",
+      "jerk_rms_baseline_ratio",
+      "jerk_energy_baseline_ratio",
+      "high_accel_count_baseline_ratio",
+      "high_gyro_count_baseline_ratio",
+      "accel_spike_count_baseline_ratio"
+    ]
+  },
+
+  "model_input": {
+    "vector_length": 14,
+    "order_source": "personalized_features.names_ordered"
+  }
+}

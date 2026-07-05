@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "modality": "motion",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-23)",
+  "artifact": "motion_xgboost.json",
+  "model_type": "XGBoost",
+  "input_window": {
+    "sampling_rate_hz": 50,
+    "window_duration_sec": 2,
+    "samples_per_window": 100,
+    "sensors": ["accelerometer", "gyroscope"]
+  },
+  "score_formula": {
+    "expression": "motion_score = frustration_probability * 100",
+    "inputs": "XGBoost frustration-associated probability in [0,1]",
+    "output_range": [0, 100]
+  },
+  "temporal_smoothing": {
+    "_decision_required": "ML-D7",
+    "note": "Temporal smoothing was investigated (06_ML_SYSTEM.md) to reduce rapid score fluctuations, but whether it is enabled by default and with what method/constant is NOT specified. Do NOT invent a constant.",
+    "enabled": null,
+    "method": null,
+    "constant": null
+  }
+}
