@@ -1,0 +1,10 @@
+{
+  "_comment": "TEMPLATE ONLY (B1 blocker). Copy to google-services.json and fill from the Firebase console. Never commit the real file. The google-services Gradle plugin is intentionally NOT applied until this file exists.",
+  "project_info": {
+    "project_number": "000000000000",
+    "project_id": "frustradar-placeholder",
+    "storage_bucket": "frustradar-placeholder.appspot.com"
+  },
+  "client": [],
+  "configuration_version": "1"
+}
