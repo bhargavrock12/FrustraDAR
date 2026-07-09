@@ -1,0 +1,100 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "86ce1980babe523118b343c6152d99b5",
+    "entities": [
+      {
+        "tableName": "score_queue",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sessionId` TEXT NOT NULL, `timestamp` TEXT NOT NULL, `facialScore` REAL, `audioScore` REAL, `motionScore` REAL, `behaviorScore` REAL, `fusionScore` REAL NOT NULL, `signalsUsed` TEXT NOT NULL, `windowDurationSec` INTEGER NOT NULL, `uploaded` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sessionId",
+            "columnName": "sessionId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "facialScore",
+            "columnName": "facialScore",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "audioScore",
+            "columnName": "audioScore",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "motionScore",
+            "columnName": "motionScore",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "behaviorScore",
+            "columnName": "behaviorScore",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fusionScore",
+            "columnName": "fusionScore",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signalsUsed",
+            "columnName": "signalsUsed",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "windowDurationSec",
+            "columnName": "windowDurationSec",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uploaded",
+            "columnName": "uploaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '86ce1980babe523118b343c6152d99b5')"
+    ]
+  }
+}
