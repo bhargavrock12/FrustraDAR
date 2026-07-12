@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FrustraDAR</string>
+    <string name="status_needs_consent">Consent and permissions required before any capture starts.</string>
+    <string name="status_ready">Consent granted. Capture is not implemented yet (Phase 1 shell).</string>
+    <string name="btn_grant_consent">Review consent</string>
+    <string name="consent_title">FrustraDAR consent</string>
+    <string name="consent_message">FrustraDAR processes camera, microphone and motion signals entirely on your device. Raw camera, audio or motion data never leaves the device; only derived frustration scores and session metadata are sent to the FrustraDAR backend. Foreground-game detection uses your device\'s usage-access permission. You can withdraw consent at any time.</string>
+    <string name="consent_accept">I consent</string>
+    <string name="consent_decline">Not now</string>
+</resources>
