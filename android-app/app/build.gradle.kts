@@ -97,6 +97,11 @@ dependencies {
     // Gson (explicit — also pulled by retrofit converter)
     implementation("com.google.code.gson:gson:2.11.0")
 
+    // WorkManager + Hilt Worker (Phase 3: offline upload)
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
+    implementation("androidx.hilt:hilt-work:1.2.0")
+    ksp("androidx.hilt:hilt-compiler:1.2.0")
+
     // Unit tests
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
@@ -104,4 +109,5 @@ dependencies {
     testImplementation("org.robolectric:robolectric:4.13")
     testImplementation("androidx.test:core:1.6.1")
     testImplementation("androidx.room:room-testing:2.6.1")
+    testImplementation("androidx.work:work-testing:2.9.1")
 }
