@@ -102,6 +102,9 @@ dependencies {
     implementation("androidx.hilt:hilt-work:1.2.0")
     ksp("androidx.hilt:hilt-compiler:1.2.0")
 
+    // ONNX Runtime (Phase 4)
+    implementation("com.microsoft.onnxruntime:onnxruntime-android:1.18.0")
+
     // Unit tests
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
@@ -110,4 +113,5 @@ dependencies {
     testImplementation("androidx.test:core:1.6.1")
     testImplementation("androidx.room:room-testing:2.6.1")
     testImplementation("androidx.work:work-testing:2.9.1")
+    testImplementation("org.mockito:mockito-core:5.12.0")
 }
