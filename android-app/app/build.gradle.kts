@@ -105,6 +105,11 @@ dependencies {
     // ONNX Runtime (Phase 4)
     implementation("com.microsoft.onnxruntime:onnxruntime-android:1.18.0")
 
+    // ML Kit Face Detection (Phase 5: detect+crop in preprocess/)
+    implementation("com.google.mlkit:face-detection:16.1.7")
+    // Play Services coroutine support for ML Kit Task.await()
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
+
     // Unit tests
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
