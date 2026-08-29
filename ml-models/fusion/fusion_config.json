@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "contract": "late_fusion",
+  "source_of_truth": "docs/06_ML_SYSTEM.md (FD-9..FD-13)",
+  "description": "Decision-level (late) fusion of the three modality scores into a Final Score 0-100 and a display category. This is a scoring engine, not a trained model.",
+  "modalities": ["facial", "voice", "motion"],
+  "weights": {
+    "facial": 0.30,
+    "voice": 0.25,
+    "motion": 0.25
+  },
+  "_weights_note": "The base modality weights are Facial=0.30, Voice=0.25, Motion=0.25. For any set of available modalities, including when all three are present, the available weights are normalized to sum to 1.0 before computing the weighted average.",
+  "_decision_required": {
+    
+  },
+  "renormalization": {
+    "enabled": true,
+    "rule": "For any set of available modalities, drop unavailable modalities and rescale the weights of the remaining modalities so they sum to 1.0, then take the weighted sum of the present scores. This normalization also applies when all three modalities are present.",
+    "examples": {
+      "voice_missing": {
+        "present": ["facial", "motion"],
+        "effective_weights": {
+          "facial": 0.5454545454545454,
+          "motion": 0.45454545454545453
+        }
+      },
+      "facial_missing": {
+        "present": ["voice", "motion"],
+        "effective_weights": {
+          "voice": 0.5,
+          "motion": 0.5
+        }
+      },
+      "motion_missing": {
+        "present": ["facial", "voice"],
+        "effective_weights": {
+          "facial": 0.5454545454545454,
+          "voice": 0.45454545454545453
+        }
+      }
+    },
+    "all_missing_behavior": "No Final Score is produced when every modality is missing."
+  },
+  "final_score": {
+    "range": [0, 100],
+    "clip": true,
+    "all_present_formula": "Normalize the base weights 0.30/0.25/0.25 to 0.375/0.3125/0.3125, then compute Final Score = 0.375*Facial + 0.3125*Voice + 0.3125*Motion."
+  },
+  "category_bands": [
+    { "min": 0,  "max": 20,  "label": "calm" },
+    { "min": 20, "max": 40,  "label": "mild" },
+    { "min": 40, "max": 60,  "label": "moderate" },
+    { "min": 60, "max": 80,  "label": "high" },
+    { "min": 80, "max": 100, "label": "critical" }
+  ],
+  "category_boundary_rule": "Bands are lower-inclusive and upper-exclusive [min, max) so exact boundary values map to the higher band (e.g. 20 -> mild, 40 -> moderate, 60 -> high, 80 -> critical). The top band is inclusive of 100: [80, 100].",
+  "not_a_fusion_input": {
+    "behavioral_analytics": "Behavioral analytics is NOT a fusion input and NOT a model (FD-12, FD-24). It may inform application logic around the score but must never be blended into the Final Score."
+  },
+  "_important": "Category bands are DISPLAY concepts and are distinct from the backend alert thresholds (HIGH 70 / CRITICAL 85, FD-15). Do NOT place alert thresholds in this file."
+}

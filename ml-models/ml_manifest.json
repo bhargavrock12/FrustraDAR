@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "module": "ml-models",
+  "source_of_truth": "docs/06_ML_SYSTEM.md",
+  "description": "Index of on-device ML artifacts and their declarative scoring/I-O contracts. Runtime/inference lives in android-app/, not here.",
+  "_artifact_binaries_note": "Model binaries are stored alongside their declarative contracts. Large binaries are tracked using Git LFS.",
+
+  "_decision_required": {
+
+  },
+  "modalities": {
+    "facial": {
+      "artifact": "facial/frustradar_facial_int8.onnx",
+      "present": true,
+      "version": "int8-v1",
+      "size_bytes": 87396685,
+      "size_bytes_expected_approx": 87031808,
+      "sha256": "DEC15DD6FCCF667FA3BB08F25BC8EEA6F2954D50D30BFCF8C75658E75E13B14E",
+      "config": "facial/facial_scoring_config.json",
+      "input_spec": "facial/facial_input_spec.json",
+      "metadata": "facial/facial_metadata.json"
+    },
+    "voice": {
+      "artifact": "voice/FrustraDAR_Voice_INT8.onnx",
+      "present": true,
+      "version": "int8-v1",
+      "size_bytes": 122101373,
+      "size_bytes_expected_approx": 121634816,
+      "sha256": "A5DFFC41C6858C2684AF0A75478FEA3FCE253EF0AB1CAE4EAD7217433F0812C9",
+      "config": "voice/voice_scoring_config.json",
+      "input_spec": "voice/voice_input_spec.json",
+      "metadata": "voice/voice_metadata.json"
+    },
+    "motion": {
+      "artifact": "motion/motion_xgboost.json",
+      "present": true,
+      "version": "xgb-14feat-v1",
+      "size_bytes": 1091863,
+      "size_bytes_expected_approx": 1090519,
+      "sha256": "78A2B899E7AFEB8C8B4D72564BA8CDDE85D781A36B73C145A21523DC5AD145A2",
+      "config": "motion/motion_scoring_config.json",
+      "feature_spec": "motion/motion_feature_spec.json",
+      "baseline_spec": "motion/motion_baseline_spec.json",
+      "metadata": "motion/motion_metadata.json"
+    }
+  },
+  "fusion": {
+    "config": "fusion/fusion_config.json",
+    "spec": "fusion/fusion_spec.md"
+  },
+  "notes": {
+    "size_bytes_expected_approx": "Approximate INT8/artifact sizes derived from 06_ML_SYSTEM.md deployment notes (facial ~83 MB, voice ~116 MB, motion ~1.04 MB), expressed in bytes for reference only. Replace size_bytes with the exact measured value of the shipped binary.",
+    "on_device_only": "All inference runs on-device. No backend inference (FD-1, FD-2)."
+  }
+}
